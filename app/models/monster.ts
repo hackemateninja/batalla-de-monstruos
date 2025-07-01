@@ -1,6 +1,4 @@
-import Battle from '#models/battle'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export default class Monster extends BaseModel {
@@ -24,9 +22,6 @@ export default class Monster extends BaseModel {
 
   @column({})
   declare image: string
-
-  @belongsTo(() => Battle)
-  declare battle: BelongsTo<typeof Battle>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
