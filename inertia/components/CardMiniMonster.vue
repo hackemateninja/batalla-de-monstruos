@@ -10,7 +10,7 @@
         <progress value="50" max="100" />
       </div>
       <div>
-        <span><strong>defense:</strong> {{ defense }} pts</span>
+        <span><strong>defensa:</strong> {{ defense }} pts</span>
         <progress value="70" max="100" />
       </div>
       <Link :href="`monstruos/${id}/editar`">Ver mas...</Link>
