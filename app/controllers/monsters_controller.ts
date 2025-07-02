@@ -24,9 +24,9 @@ export default class MonstersController {
   async update({ params, request, response }: HttpContext) {
     const payload = await request.validateUsing(createMonsterValidator)
     const monster = await Monster.findOrFail(params.id)
+
     monster.merge(payload)
     await monster.save()
-
     return response.redirect('/monstruos')
   }
 }
