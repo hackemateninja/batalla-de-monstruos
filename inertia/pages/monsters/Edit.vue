@@ -1,13 +1,15 @@
 <template>
   <Layout>
-    <h1> Hello monsters edit</h1>
+    <h1> Hello monsters edit {{ id }}</h1>
   </Layout>
 </template>
 
 <script lang="ts" setup>
 import Layout from '~/Layout.vue';
 
-
+const props = defineProps({
+  id: Number
+})
 </script>
 
 <style></style>

@@ -9,7 +9,8 @@ export default class MonstersController {
     return inertia.render('monsters/Create')
   }
 
-  async edit({ inertia }: HttpContext) {
-    return inertia.render('monsters/Edit')
+  async edit({ inertia, params }: HttpContext) {
+    const id = params.id
+    return inertia.render('monsters/Edit', { id })
   }
 }

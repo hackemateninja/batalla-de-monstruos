@@ -9,7 +9,8 @@ export default class BattlesController {
     return inertia.render('battles/Create')
   }
 
-  async edit({ inertia }: HttpContext) {
-    return inertia.render('battles/Edit')
+  async show({ inertia, params }: HttpContext) {
+    const id = params.id
+    return inertia.render('battles/Show', { id })
   }
 }
