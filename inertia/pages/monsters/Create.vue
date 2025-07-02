@@ -1,7 +1,8 @@
 <template>
   <Layout>
-    <BreadCrumb />
-    <h1> Hello monsters create</h1>
+    <BreadCrumb parent-name="Monstruos" parent-route="/monstruos" current-name="Crear monstruo" />
+
+    <h1>Una nueva terrorifica creacion</h1>
   </Layout>
 </template>
 

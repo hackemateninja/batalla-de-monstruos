@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="dark">
 
 <head>
   <meta charset="utf-8">
@@ -14,6 +14,10 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.lime.min.css"
   >
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css"
+>
   @vite(['inertia/app/app.ts', `inertia/pages/${page.component}.vue`])
   @inertiaHead()
   @stack('dumper')

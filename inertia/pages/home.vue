@@ -4,7 +4,7 @@
     <section class="hero">
       <div class="hook">
         <h1>💀<mark>Batalla de monstruos</mark> 🧛 <br>Full stack con adonis y vue</h1>
-        <p>App minimalista para crear monstruos y batallas entre ellos con un par de clicks, si alguna vex tuviste
+        <p>App minimalista para crear monstruos y batallas entre ellos con un par de clicks, si alguna ves tuviste
           curiosidad de quien ganaba? aca esta la respuesta</p>
         <p>Elije tus monstruos favoritos y ponlos a pelear!</p>
         <div class="action">

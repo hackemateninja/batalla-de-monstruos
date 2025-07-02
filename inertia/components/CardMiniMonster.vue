@@ -1,7 +1,7 @@
 <template>
   <article class="card">
     <div>
-      <img :src="image" alt="dracula">
+      <img :src="image" :alt="name">
     </div>
     <footer>
       <h5>{{ name }}</h5>
