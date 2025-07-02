@@ -1,60 +1,63 @@
 <template>
   <article>
-    <form @submit="onSubmit">
+    <form v-if="monster" @submit.prevent="emit('save')" @change="emit('update')">
       <label>
         Nombre
-        <input v-model="props.monster.name" name="name" required placeholder="Nombre del monstruo" />
+        <input v-model="monster.name" name="name" required placeholder="Nombre del monstruo" />
       </label>
 
       <label>
-        Vida: <strong>{{ props.monster.life }}pts</strong>
-        <input type="range" v-model.number="props.monster.life" min="0" max="100" />
+        Vida: <strong>{{ monster.life }} pts</strong>
+        <input type="range" v-model.number="monster.life" min="0" max="100" />
       </label>
 
       <label>
-        Ataque: <strong>{{ props.monster.attack }}pts</strong>
-        <input type="range" v-model.number="props.monster.attack" min="0" max="100" />
+        Ataque: <strong>{{ monster.attack }} pts</strong>
+        <input type="range" v-model.number="monster.attack" min="0" max="100" />
       </label>
 
       <label>
-        Defensa: <strong>{{ props.monster.defense }}pts</strong>
-        <input type="range" v-model.number="props.monster.defense" min="0" max="100" />
+        Defensa: <strong>{{ monster.defense }} pts</strong>
+        <input type="range" v-model.number="monster.defense" min="0" max="100" />
       </label>
 
       <label>
-        Velocidad: <strong>{{ props.monster.speed }}pts</strong>
-        <input type="range" v-model.number="props.monster.speed" min="0" max="100" />
+        Velocidad: <strong>{{ monster.speed }} pts</strong>
+        <input type="range" v-model.number="monster.speed" min="0" max="100" />
       </label>
 
       <label>
         Imagen
-        <input v-model="props.monster.image" type="url" required placeholder="Link de la imagen" />
+        <input v-model="monster.image" type="url" required placeholder="Link de la imagen" />
       </label>
 
-      <input type="submit" value="Guardar" />
+      <input type="submit" value="Guardar" :disabled="isDisabled" />
     </form>
   </article>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { defineModel } from 'vue';
 
-const props = defineProps<{
-  monster: {
-    name: string
-    image: string
-    life: number
-    attack: number
-    defense: number
-    speed: number
-  }
-}>()
 
-const emit = defineEmits(['save'])
-
-function onSubmit(e: Event) {
-  e.preventDefault()
-  emit('save')
+interface Monster {
+  name: string
+  image: string
+  life: number
+  attack: number
+  defense: number
+  speed: number
 }
-</script>
 
-<style></style>
+
+const monster = defineModel<Monster>('monster')
+
+interface Props {
+  isDisabled?: boolean
+}
+
+const props = defineProps<Props>()
+
+
+const emit = defineEmits(['save', 'update'])
+</script>

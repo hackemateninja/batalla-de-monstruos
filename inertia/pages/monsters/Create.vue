@@ -5,7 +5,7 @@
     <h1>Una nueva terrorifica creacion</h1>
 
     <main class="grid">
-      <FormMonster :monster="monster" @save="saveMonster" />
+      <FormMonster v-model:monster="monster" @save="saveMonster" />
       <CardDetailMonster :monster="monster" />
     </main>
   </Layout>
