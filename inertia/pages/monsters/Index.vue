@@ -1,10 +1,15 @@
 <template>
   <Layout>
     <Header title="Monstruos disponibles" url="monstruos/crear" button-title="Agregar Monstruo" />
-    <main class="card-container">
+    <main v-if="props.monsters.length > 0" class="card-container">
       <CardMiniMonster v-for="monster in props.monsters" :key="monster.id" :id="monster.id" :name="monster.name"
         :image="monster.image" :life="monster.life" :defense="monster.defense" />
+
     </main>
+
+    <div v-else>
+      <h2>Aun no hay monstruos, agrega uno</h2>
+    </div>
   </Layout>
 </template>
 
@@ -12,14 +17,6 @@
 import CardMiniMonster from '~/components/CardMiniMonster.vue';
 import Header from '~/components/Header.vue';
 import Layout from '~/Layout.vue';
-
-import { onMounted } from 'vue';
-
-
-onMounted(() => {
-  console.log(props.monsters)
-})
-
 
 
 interface Monster {

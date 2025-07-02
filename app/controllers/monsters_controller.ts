@@ -20,4 +20,13 @@ export default class MonstersController {
   async edit({ inertia, params }: HttpContext) {
     return inertia.render('monsters/Edit', { monster: await Monster.findOrFail(params.id) })
   }
+
+  async update({ params, request, response }: HttpContext) {
+    const payload = await request.validateUsing(createMonsterValidator)
+    const monster = await Monster.findOrFail(params.id)
+    monster.merge(payload)
+    await monster.save()
+
+    return response.redirect('/monstruos')
+  }
 }
