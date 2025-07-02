@@ -1,9 +1,15 @@
+<template>
+  <Layout>
+
+    <h1 class="text-3xl">Hello iniertia</h1>
+
+    <p>no me vuelva a joder en la hijuemadre vida</p>
+  </Layout>
+</template>
+
+
 <script setup lang="ts">
-  import { Head } from '@inertiajs/vue3';
+import Layout from '~/Layout.vue';
 </script>
 
-<template>
-  <Head title="Homepage" />
-
-  <h1 class="text-3xl">Hello iniertia</h1>
-</template>
+<style></style>
