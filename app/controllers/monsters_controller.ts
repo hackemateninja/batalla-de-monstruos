@@ -1,6 +1,6 @@
 import Monster from '#models/monster'
 import { createMonsterValidator } from '#validators/monster'
-import type { HttpContext } from '@adonisjs/core/http'
+import { type HttpContext } from '@adonisjs/core/http'
 
 export default class MonstersController {
   async index({ inertia }: HttpContext) {
@@ -27,6 +27,13 @@ export default class MonstersController {
 
     monster.merge(payload)
     await monster.save()
+    return response.redirect('/monstruos')
+  }
+
+  async destroy({ params, response }: HttpContext) {
+    const monster = await Monster.findOrFail(params.id)
+    await monster.delete()
+
     return response.redirect('/monstruos')
   }
 }

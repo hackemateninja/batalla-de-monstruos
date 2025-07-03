@@ -2,10 +2,15 @@
   <Layout>
     <BreadCrumb parent-name="Monstruos" parent-route="/monstruos" :current-name="`Monstruo ${monsterState.id}`" />
 
-    <h1>Edit: {{ monsterState.name }}</h1>
+    <div class="grid">
+      <h1>Edit: {{ monsterState.name }}</h1>
+
+      <button @click="deleteMonster">Delete</button>
+    </div>
 
     <main class="grid">
-      <FormMonster v-model:monster="monsterState" :is-disabled="isDisable" @save="updateMonster" @update="enableForm" />
+      <FormMonster v-model:monster="monsterState" :is-disabled="isDisabled" @save="updateMonster"
+        @update="enableForm" />
       <CardDetailMonster :monster="monsterState" />
     </main>
   </Layout>
@@ -34,11 +39,11 @@ const props = defineProps<{ monster: Monster }>()
 
 const monsterState = reactive<Monster>({ ...props.monster })
 
-const isDisable = ref(true)
+const isDisabled = ref(true)
 
 
 function enableForm() {
-  isDisable.value = false
+  isDisabled.value = false
 }
 
 
@@ -49,4 +54,23 @@ function updateMonster() {
     }
   })
 }
+
+
+function deleteMonster() {
+  router.delete(`/monstruos/${monsterState.id}/destroy`)
+}
 </script>
+
+<style scoped>
+button {
+  margin-top: 50px;
+  background-color: var(--pico-color-red-450);
+  border-color: var(--pico-color-red-450);
+}
+
+
+button:hover {
+  background-color: var(--pico-color-red-350);
+  border-color: var(--pico-color-red-350);
+}
+</style>

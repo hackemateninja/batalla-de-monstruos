@@ -18,8 +18,9 @@ router
     router.get('/', [MonstersController, 'index']).as('monsters')
     router.get('/crear', [MonstersController, 'create']).as('monster.create')
     router.post('/store', [MonstersController, 'store']).as('monster.store')
-    router.put('/:id/update', [MonstersController, 'update']).as('monster.update')
     router.get('/:id/editar', [MonstersController, 'edit']).as('monster.edit')
+    router.put('/:id/update', [MonstersController, 'update']).as('monster.update')
+    router.delete('/:id/destroy', [MonstersController, 'destroy']).as('monster.destroy')
   })
   .prefix('/monstruos')
 

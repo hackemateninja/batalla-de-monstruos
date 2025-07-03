@@ -1,20 +1,19 @@
 <template>
   <article>
     <div class="images">
-      <img class="image-winner"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfZIaubJRn9IqPsMVOqmnxlx3Oy9dEdfPm3g&s" alt="name">
+      <img class="image-winner" :src="winner.image" :alt="winner.name">
       <div class="badge">
         <div>VS</div>
       </div>
-      <img class="image-losser" src="https://voyagecomics.com/wp-content/uploads/2023/10/dracula.jpg" alt="name">
+      <img class="image-losser" :src="losser.image" :alt="losser.name">
     </div>
     <div class="resume">
-      <h4>Hombre lobo vs Dracula</h4>
+      <h4>{{ winner.name }} vs {{ losser.name }}</h4>
       <div>
-        <p class="pico-background-jade-350">Ganador: <strong>Hombre lobo</strong></p>
-        <p class="pico-background-red-350">Perdedor: <strong>Dracula</strong></p>
+        <p class="pico-jade-350">Ganador: <strong>{{ winner.name }}</strong></p>
+        <p class="pico-red-350">Perdedor: <strong>{{ losser.name }}</strong></p>
       </div>
-      <Link href="">Ver detalles</Link>
+      <Link :href="`/batallas/${id}`">Ver detalles</Link>
     </div>
 
   </article>
@@ -23,7 +22,18 @@
 <script lang="ts" setup>
 import { Link } from '@inertiajs/vue3';
 
+interface Monster {
+  name: string,
+  image: string
+}
 
+interface CardMiniProps {
+  id: string,
+  winner: Monster,
+  losser: Monster
+}
+
+const props = defineProps<CardMiniProps>()
 </script>
 
 <style scoped>
@@ -59,7 +69,7 @@ img {
 
 .image-losser {
   margin-top: -35px;
-  filter: grayscale(1);
+  filter: grayscale(1) blur(2px);
 }
 
 .badge {

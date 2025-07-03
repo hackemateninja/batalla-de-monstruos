@@ -1,15 +1,18 @@
 <template>
   <Layout>
     <Header title="Monstruos disponibles" url="monstruos/crear" button-title="Agregar Monstruo" />
-    <main v-if="props.monsters.length > 0" class="card-container">
-      <CardMiniMonster v-for="monster in props.monsters" :key="monster.id" :id="monster.id" :name="monster.name"
+
+    <div v-if="monsters.length <= 0">
+      <h2 class="empty-title">☠️ Aun no hay monstruos ☠️</h2>
+    </div>
+
+    <main v-else class="card-container">
+      <CardMiniMonster v-for="monster in monsters" :key="monster.id" :id="monster.id" :name="monster.name"
         :image="monster.image" :life="monster.life" :defense="monster.defense" />
 
     </main>
 
-    <div v-else>
-      <h2>Aun no hay monstruos, agrega uno</h2>
-    </div>
+
   </Layout>
 </template>
 
@@ -27,8 +30,9 @@ interface Monster {
   defense: number
 }
 
-const props = defineProps<{ monsters: Monster[] }>()
 
+
+const { monsters } = defineProps<{ monsters: Monster[] }>()
 
 
 </script>
@@ -40,5 +44,11 @@ const props = defineProps<{ monsters: Monster[] }>()
   grid-gap: 10px;
   margin-top: 50px;
   margin: 0, auto;
+}
+
+.empty-title {
+  text-align: center;
+  margin-top: 250px;
+  color: var(--pico-color-slate-300);
 }
 </style>
