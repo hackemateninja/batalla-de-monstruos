@@ -74,4 +74,8 @@ button:hover {
   background-color: var(--pico-color-red-350);
   border-color: var(--pico-color-red-350);
 }
+
+main {
+  margin-top: 40px;
+}
 </style>

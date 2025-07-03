@@ -10,8 +10,8 @@
     <div class="resume">
       <h4>{{ winner.name }} vs {{ losser.name }}</h4>
       <div>
-        <p class="pico-jade-350">Ganador: <strong>{{ winner.name }}</strong></p>
-        <p class="pico-red-350">Perdedor: <strong>{{ losser.name }}</strong></p>
+        <p class="pico-background-lime-100">Ganador: <strong>{{ winner.name }}</strong></p>
+        <p class="pico-background-red-400">Perdedor: <strong>{{ losser.name }}</strong></p>
       </div>
       <Link :href="`/batallas/${id}`">Ver detalles</Link>
     </div>
