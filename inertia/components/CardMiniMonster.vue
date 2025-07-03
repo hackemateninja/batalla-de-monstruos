@@ -30,7 +30,7 @@ interface Props {
   defense: number;
 }
 
-const props = defineProps<Props>()
+const { id, image, name, life, defense } = defineProps<Props>()
 </script>
 
 <style scoped>

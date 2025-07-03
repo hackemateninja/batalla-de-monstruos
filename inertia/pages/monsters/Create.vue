@@ -12,14 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import { router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { useForm } from '@inertiajs/vue3';
 import Layout from '~/Layout.vue';
 import BreadCrumb from '~/components/BreadCrumb.vue';
 import CardDetailMonster from '~/components/CardDetailMonster.vue';
 import FormMonster from '~/components/FormMonster.vue';
 
-const monster = ref({
+const monster = useForm({
   name: '',
   image: '',
   life: 50,
@@ -29,11 +28,7 @@ const monster = ref({
 })
 
 function saveMonster() {
-  router.post('/monstruos/store', monster.value, {
-    onSuccess: () => {
-      router.visit('/monstruos')
-    }
-  })
+  monster.post('/monstruos/store')
 }
 
 </script>

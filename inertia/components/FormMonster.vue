@@ -1,9 +1,12 @@
 <template>
   <article>
-    <form v-if="monster" @submit.prevent="emit('save')" @change="emit('update')">
+    <form v-if="monster" @submit.prevent="emit('save')" @change="isDisabled = false">
       <label>
         Nombre
-        <input v-model="monster.name" name="name" required placeholder="Nombre del monstruo" />
+        <input v-model="monster.name" name="name" placeholder="Nombre del monstruo" aria-describedby="invalid-helper" />
+        <small v-if="monster.errors.name" id="invalid-helper" class="pico-color-red-450">
+          {{ monster.errors.name }}
+        </small>
       </label>
 
       <label>
@@ -28,7 +31,10 @@
 
       <label>
         Imagen
-        <input v-model="monster.image" type="url" required placeholder="Link de la imagen" />
+        <input v-model="monster.image" type="url" placeholder="Link de la imagen" />
+        <small v-if="monster.errors.image" id="invalid-helper" class="pico-color-red-450">
+          {{ monster.errors.name }}
+        </small>
       </label>
 
       <input type="submit" value="Guardar" :disabled="isDisabled" />
@@ -37,10 +43,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineModel } from 'vue';
+import type { InertiaForm } from '@inertiajs/vue3';
+import { defineModel, ref } from 'vue';
 
 
-interface Monster {
+type Monster = {
   name: string
   image: string
   life: number
@@ -49,15 +56,18 @@ interface Monster {
   speed: number
 }
 
-
-const monster = defineModel<Monster>('monster')
-
 interface Props {
-  isDisabled?: boolean
+  isForEdit?: boolean
 }
 
-const props = defineProps<Props>()
+const { isForEdit } = defineProps<Props>()
+
+const monster = defineModel<InertiaForm<Monster>>('monster')
 
 
-const emit = defineEmits(['save', 'update'])
+
+const isDisabled = ref(isForEdit ?? false)
+
+
+const emit = defineEmits(['save'])
 </script>

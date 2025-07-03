@@ -19,7 +19,7 @@ interface Props {
   currentName: string
 }
 
-const props = defineProps<Props>()
+const { parentRoute, parentName, currentName } = defineProps<Props>()
 </script>
 
 <style></style>

@@ -30,9 +30,13 @@ interface Monster {
   defense: number
 }
 
+interface Props {
+  monsters: Monster[]
+}
 
 
-const { monsters } = defineProps<{ monsters: Monster[] }>()
+
+const { monsters } = defineProps<Props>()
 
 
 </script>

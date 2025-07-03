@@ -26,16 +26,22 @@
 
 
 <script lang="ts" setup>
-const props = defineProps<{
-  monster: {
-    name: string
-    image: string
-    life: number
-    attack: number
-    defense: number
-    speed: number
-  }
-}>()
+
+interface Monster {
+  name: string
+  image: string
+  life: number
+  attack: number
+  defense: number
+  speed: number
+}
+
+interface Props {
+  monster: Monster
+}
+
+const { monster } = defineProps<Props>()
+
 </script>
 
 <style scoped>

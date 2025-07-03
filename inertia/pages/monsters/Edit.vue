@@ -1,17 +1,16 @@
 <template>
   <Layout>
-    <BreadCrumb parent-name="Monstruos" parent-route="/monstruos" :current-name="`Monstruo ${monsterState.id}`" />
+    <BreadCrumb parent-name="Monstruos" parent-route="/monstruos" :current-name="`Monstruo ${monster.id}`" />
 
 
     <div class="grid">
-      <h1>Edit: {{ monsterState.name }}</h1>
+      <h1>Edit: {{ monster.name }}</h1>
       <button @click="deleteMonster">Borrar monstruo</button>
     </div>
 
     <main class="grid">
-      <FormMonster v-model:monster="monsterState" :is-disabled="isDisabled" @save="updateMonster"
-        @update="enableForm" />
-      <CardDetailMonster :monster="monsterState" />
+      <FormMonster v-model:monster="monsterForm" :is-for-edit="true" @save="updateMonster" />
+      <CardDetailMonster :monster="monsterForm" />
     </main>
 
 
@@ -19,8 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { router } from '@inertiajs/vue3'
-import { reactive, ref } from 'vue'
+import { router, useForm } from '@inertiajs/vue3'
 
 import Layout from '~/Layout.vue'
 import BreadCrumb from '~/components/BreadCrumb.vue'
@@ -37,29 +35,20 @@ interface Monster {
   speed: number
 }
 
-const props = defineProps<{ monster: Monster }>()
+interface Props { monster: Monster }
 
-const monsterState = reactive<Monster>({ ...props.monster })
+const { monster } = defineProps<Props>()
 
-const isDisabled = ref(true)
-
-
-function enableForm() {
-  isDisabled.value = false
-}
+const monsterForm = useForm({ ...monster })
 
 
 function updateMonster() {
-  router.put(`/monstruos/${monsterState.id}/update`, monsterState, {
-    onSuccess: () => {
-      router.visit('/monstruos')
-    }
-  })
+  monsterForm.put(`/monstruos/${monster.id}/update`)
 }
 
 
 function deleteMonster() {
-  router.delete(`/monstruos/${monsterState.id}/destroy`)
+  router.delete(`/monstruos/${monster.id}/destroy`)
 }
 </script>
 

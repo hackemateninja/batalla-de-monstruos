@@ -27,13 +27,13 @@ interface Monster {
   image: string
 }
 
-interface CardMiniProps {
+interface Props {
   id: string,
   winner: Monster,
   losser: Monster
 }
 
-const props = defineProps<CardMiniProps>()
+const { id, winner, losser } = defineProps<Props>()
 </script>
 
 <style scoped>

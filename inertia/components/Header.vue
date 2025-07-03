@@ -17,7 +17,7 @@ interface Props {
   buttonTitle: string;
 }
 
-const props = defineProps<Props>();
+const { title, url, buttonTitle } = defineProps<Props>();
 </script>
 
 <style scoped>
