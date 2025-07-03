@@ -2,10 +2,10 @@
   <Layout>
     <BreadCrumb parent-name="Monstruos" parent-route="/monstruos" :current-name="`Monstruo ${monsterState.id}`" />
 
+
     <div class="grid">
       <h1>Edit: {{ monsterState.name }}</h1>
-
-      <button @click="deleteMonster">Delete</button>
+      <button @click="deleteMonster">Borrar monstruo</button>
     </div>
 
     <main class="grid">
@@ -13,6 +13,8 @@
         @update="enableForm" />
       <CardDetailMonster :monster="monsterState" />
     </main>
+
+
   </Layout>
 </template>
 
@@ -63,7 +65,6 @@ function deleteMonster() {
 
 <style scoped>
 button {
-  margin-top: 50px;
   background-color: var(--pico-color-red-450);
   border-color: var(--pico-color-red-450);
 }
