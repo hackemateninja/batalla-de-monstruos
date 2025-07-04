@@ -2,9 +2,7 @@
   <Layout>
     <Header title="Monstruos disponibles" url="monstruos/crear" button-title="Agregar Monstruo" />
 
-    <div v-if="monsters.length <= 0">
-      <h2 class="empty-title">☠️ Aun no hay monstruos ☠️</h2>
-    </div>
+    <EmptyMessage message="Aun no hay monstruos" v-if="monsters.length <= 0" />
 
     <main v-else class="card-container">
       <CardMiniMonster v-for="monster in monsters" :key="monster.id" :id="monster.id" :name="monster.name"
@@ -18,6 +16,7 @@
 
 <script lang="ts" setup>
 import CardMiniMonster from '~/components/CardMiniMonster.vue';
+import EmptyMessage from '~/components/EmptyMessage.vue';
 import Header from '~/components/Header.vue';
 import Layout from '~/Layout.vue';
 
@@ -48,11 +47,5 @@ const { monsters } = defineProps<Props>()
   grid-gap: 10px;
   margin-top: 50px;
   margin: 0, auto;
-}
-
-.empty-title {
-  text-align: center;
-  margin-top: 250px;
-  color: var(--pico-color-slate-300);
 }
 </style>

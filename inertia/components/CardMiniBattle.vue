@@ -28,7 +28,7 @@ interface Monster {
 }
 
 interface Props {
-  id: string,
+  id: number,
   winner: Monster,
   losser: Monster
 }
